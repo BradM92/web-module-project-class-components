@@ -1,5 +1,4 @@
 import React from 'react'
-
 const Todos = [
   {
     name: 'Organize Garage',
@@ -9,16 +8,30 @@ const Todos = [
   {
     name: 'Bake Cookies',
     id: 1528817084358,
-    completed: false
+    completed: true
   }
 ]
 
 export default class App extends React.Component {
+  constructor(){
+    super();
+    this.state = Todos;
+    
+  }
   render() {
+    const todos = this.state;
+    
     return (
       <div>
         
-        Todo App
+        {todos.map(todos => {
+          return(<li>{todos.name}{todos.completed? <span>--completed</span> : <span></span>}</li>)
+        })}
+        <form>
+          <input />
+          <button>Add</button>
+        </form>
+        <button> Clear Completed</button>
       </div>
     )
   }
