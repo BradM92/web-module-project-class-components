@@ -1,4 +1,5 @@
 import React from 'react'
+import TodoList from './TodoList';
 const Todos = [
   {
     name: 'Organize Garage',
@@ -23,15 +24,14 @@ export default class App extends React.Component {
     
     return (
       <div>
-        
-        {todos.map(todos => {
-          return(<li>{todos.name}{todos.completed? <span>--completed</span> : <span></span>}</li>)
-        })}
+        <TodoList  todos = {todos}/>
         <form>
           <input />
           <button>Add</button>
         </form>
         <button> Clear Completed</button>
+    
+        Todo App
       </div>
     )
   }
