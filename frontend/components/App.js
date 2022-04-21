@@ -31,10 +31,10 @@ export default class App extends React.Component {
     })
   }
 
-  addSubmit = () => {
+  addSubmit = (task) => {
 
     const newTodo = {
-      name:"cook dinner",
+      name: task,
       id:Date.now(),
       completed: false
     }
@@ -43,11 +43,28 @@ export default class App extends React.Component {
       todos: [...this.state.todos, newTodo]
     })
   }
+
+  handleCompleted = (clicked) => {
+    const clickedid = clicked;
+    this.setState({
+      ...this.state,
+      todos: this.state.todos.map( todo => {
+        if(todo.id === clickedid){
+          return{
+            ...todo,
+            completed: !todo.completed
+          }
+        }
+        return todo
+      })
+
+    })
+  }
   render() {
     
     return (
       <div>
-        <TodoList  todos = {this.state.todos}/>
+        <TodoList  handleCompleted = {this.handleCompleted} todos = {this.state.todos}/>
         <Form addSubmit = {this.addSubmit}/>
         <button onClick={this.ClearCompleted}> Clear Completed</button>
     
