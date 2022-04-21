@@ -30,12 +30,25 @@ export default class App extends React.Component {
       })
     })
   }
+
+  addSubmit = () => {
+
+    const newTodo = {
+      name:"cook dinner",
+      id:Date.now(),
+      completed: false
+    }
+    this.setState({
+      ...this.state,
+      todos: [...this.state.todos, newTodo]
+    })
+  }
   render() {
     
     return (
       <div>
         <TodoList  todos = {this.state.todos}/>
-        <Form />
+        <Form addSubmit = {this.addSubmit}/>
         <button onClick={this.ClearCompleted}> Clear Completed</button>
     
         Todo App
